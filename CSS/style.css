@@ -1,0 +1,273 @@
+/* soft reset do css - impedir que o navegador aplique alguns estilos sozinho*/
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+ body{
+     background-image: url('https://http2.mlstatic.com/fundo-fotografico-em-tecido-newborn-degrad-laranja-turquesa-D_NQ_NP_983827-MLB28861480748_122018-F.jpg');
+     background-size: auto 100vh;
+     height: 100vh;
+     font-family:'Share Tech Mono', monospace;
+     font-size: 12px;
+  }
+
+  /*se a tela tiver ao menos 400px, ela irá carregar esse estilo*/
+  @media (min-width: 400px){
+    body{
+      font-size: 14px;
+    }
+  }
+  @media (min-width: 600px){
+    body{
+      background-attachment: fixed;
+      background-size: cover;
+      font-size: 18px;
+    }
+  }
+  @media (min-width: 1200px){
+    body{
+      font-size: 20px;
+    }
+  }
+
+  header{
+    height: 100vh; /*importante*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menu{
+    background-color: whitesmoke;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    z-index: 1;
+  }
+
+  .menu ul{
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .menu li{
+    list-style: none;
+    font-family: 'Oswald', monospace;
+  }
+
+  .menu a{
+    display: block;
+    padding: 10px 20px;
+    transition: background-color 1s, color 1s;
+  }
+  .menu a:active,
+  .menu a:hover {
+  background-color: teal;
+  color: white;
+  }
+
+
+  a {
+    color: teal;
+    text-decoration: none;
+    transition: color 0.5s;
+  }
+
+  a:hover{
+   
+    text-decoration: underline;
+  }
+
+  .title{
+    transform: scale(0.2) translateY(50vh);
+    opacity: 0;
+    animation: 1s ease 0.5s animacaoTitulo forwards;
+  }
+ 
+ 
+  @keyframes animacaoTitulo{
+    /*0%{
+      ao invés de 0 e 100, pode-se utilizar from e to
+      Estado inicial da animação, não coloquei pq o estado inicial já está no código acima
+    }*/
+    100%{
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  
+   }
+
+
+  
+  .site-title, 
+  .site-subtitle{
+    color: #2F4F4F;
+    text-align: center;
+    
+  }
+
+  .site-title{
+    font-size: 4em;
+    font-family: 'Oswald', sans-serif;
+    
+  }
+  .site-subtitle{
+    font-style: italic;
+    font-family: 'Share Tech Mono', monospace;
+    line-height: 1.8em;
+  }
+  .sobre, .portfolio, .contato{
+    padding: 2em;
+    min-height: 100vh;
+    
+  }
+
+  @media(min-width: 1200px){
+    .container{ 
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 1200px;
+    
+    }
+  }
+
+  .sobre h2, .portfolio h2, .contato h2{
+    font-family: 'Oswald', sans-serif;
+    color: #2F4F4F ;
+    margin-bottom: 1.5em;
+    font-size: 2em;
+  }
+
+  .sobre p{
+    color:#2F4F4F;
+    margin-bottom: 1.4em;
+    text-indent: 1.4em;
+    text-align: justify;
+  }
+  
+  .sobre .profile{
+    float: right;
+    margin-left: 2em;
+  }
+
+  .sobre .profile img{
+    width: 200px;
+    height: 200px;
+    /*border-radius: 50%; Fazer imagem circular*/
+    clip-path: polygon(100% 0%, 75% 50%, 100% 100%, 25% 100%, 0% 50%, 25% 0%); /*formato de polígono*/
+    transition: transform 500ms;
+  
+  }
+
+  .sobre .profile img:hover{
+    transform: scale(1.2) rotate(-2deg);
+  }
+
+  .sobre a{
+    transition: background-color 1s, color 1s;
+
+  }
+ .sobre a:hover {
+  background-color: teal;
+  color: white;
+ }
+
+
+
+  .portfolio .grid{
+    display: grid;
+    gap: 4em;
+
+  }
+   
+  @media (min-width: 560px){
+    .portfolio .grid{
+      grid-template-columns:300px 300px;
+    }
+  }
+
+  @media (min-width: 880px){
+    .portfolio .grid{
+      grid-template-columns: repeat(3, 320px);
+      align-content: center;
+      justify-content: center;
+      height: calc(100vh - 8em - 48px);
+    }
+  }
+
+
+
+
+  /*.img-portfolio:hover{
+    transform: scale(1.2) rotate(-2deg);
+  }*/
+  
+  .flip-card{
+    height: 200px;
+    perspective: 1000px;
+  }
+  .flip-card:hover .card{
+    transform: rotateY(180deg);
+    
+  }
+  .card{
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 2s;
+  }
+  
+  .card-frente,.card-verso{
+    backface-visibility: hidden;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  
+  .card-verso{
+    color: #2F4F4F ;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 245, 238, .5);
+    height: 200px;
+    width: 100%;
+    transform: rotateY(180deg);
+  }
+ 
+
+  .portfolio figure{
+    text-align: center;
+  }
+
+  .img-portfolio{
+    
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    object-position: left bottom;
+    transition: transform 500ms;
+  }
+  .contato .icons{
+    text-align: center;
+  }
+  
+  .contato a{
+    /*height: 20vh;*/
+    color: #2F4F4F;
+    font-size: 4em;
+    transition: text-shadow 1s color 2s;
+    
+  }
+
+
+   .contato a:active, .contato a:hover{
+    color: #87CEFA;
+    text-decoration: none;
+    text-shadow:  0px 0px 20px rgba(255, 255, 255);
+    /*Os primeiros dois valores são referentes ao eixo x e ao eixo y da sombra, já o terceiro se refere ao nível de efeito ou brilho da sombra*/
+  }
+
+
